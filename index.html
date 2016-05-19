@@ -14,7 +14,147 @@
       <h1 class="project-name">Englinh</h1>
       <h2 class="project-tagline">Learn English with Linh</h2>
     </section>
+    
+    <section class="mailchimp">
+<!-- Begin MailChimp Signup Form -->
+	<div id="mc_embed_signup">
+		<form action="//us5.list-manage.com/subscribe/post?u=c1b97cbf2ac11f0c80e288baf&amp;id=8cfac44e59" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+		    <div id="mc_embed_signup_scroll">
+				<div class="mc-field-group">
+					<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email">
+					<label for="mce-EMAIL"></label>
+                    <div id="error-box" style="display:none;"></div>
+				</div>
+				<div id="mce-responses" class="clear">
+					<div class="response" id="mce-error-response" style="display:none"></div>
+					<div class="response" id="mce-success-response" style="display:none"></div>
+				</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+			    <div style="position: absolute; left: -5000px;">
+			    	<input type="text" name="b_c1b97cbf2ac11f0c80e288baf_8cfac44e59" tabindex="-1" value="">
+			    </div>
+			    <div class="clear">
+			    	<input type="submit" value="Join the waitlist" name="subscribe" id="mc-embedded-subscribe" class="button">
+			    </div>
+		    </div>
+		</form>
+	</div>
+<!--End mc_embed_signup-->
 
+<!--hidden thank you-->
+<div id="met-signup-thankyou" style="display:none">
+	<p class="comment">Thanks! Want to help us spread the word?</p>
+	<div class="share-bank">
+		<a href="https://twitter.com/share?text=I just signed for Met. In a jet, with a pet. You can sign up anywhere&url=http%3A//m.et" class="twitter-button popup"></a>
+		<a href="http://www.linkedin.com/shareArticle?mini=true&url=http%3A//m.et&title=Met%20is%20mission%20control%20for%20the%20most%20important%20work%20you%20do" class="linkedin-button popup"></a>
+	</div>
+</div>
+<!--end thank you-->
+
+<!--text content & footer-->
+<div>
+	<h2>Met is mission control for the work you do face to face.</h2>
+	<p class="content">Whether you're getting feedback from a customer or pitching an investor, the most important work you do doesn't always start with bits and bytes. But <i>offline</i> shouldn't mean <i>invisible</i>.</p>
+	<p class="content">Good things happen when you spend more time with people. Build relationships like they count.</p>
+</div>
+
+	<img class="logo" srcset="static/landingpages/images/logo.png 1x, static/landingpages/images/logo@2x.png 2x" src="static/landingpages/images/logo.png" alt="Met logo"/>
+	<div class="footer">
+		<ul>
+			<li><img src="static/landingpages/images/twitter_bird.png"></li>
+			<li><a href="https://twitter.com/havingmet">@havingmet</a></li>
+		</ul>
+	</div>
+</div>
+</body>
+
+<!-- email validation to change button text color -->
+	<script>
+        $('input[type="email"]').on('change keyup', function() {
+            var el = $(this);
+            
+            if(validateEmailAddress(el.val()))
+                $('.button').addClass('readybutton');
+            else
+                $('.button').removeClass('readybutton');
+        });
+
+        function validateEmailAddress(email)
+        {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+    </script>
+
+<!-- more Mailchimp stuff-->
+	<script>
+        $('input[type="email"]').on('keypress focus blur', function() {
+            var el = $(this);
+            el.toggleClass('filled', el.val() !== '');
+            $('#error-box').slideUp();
+        });
+
+        if($('#mc-embedded-subscribe-form').length)
+        {
+            $('#mc-embedded-subscribe-form').ajaxChimp({
+                callback: mailchimpCallbackFunction
+            });
+        }
+
+        function mailchimpCallbackFunction(resp){
+            if(resp.result == 'success'){
+                analytics.sendSubscriptionEvent();
+                $('#mc_embed_signup').slideUp();
+                $('#met-signup-thankyou').slideDown();
+                $('.email').val('');
+            } else {
+                analytics.sendErrorEvent(resp.msg);
+                var errorBox = $('#error-box');
+                errorBox.empty();
+                errorBox.append(getErrorToDisplay(resp.msg));
+                errorBox.slideDown();
+            }
+        }
+
+        function getErrorToDisplay(msgFromMailChimp)
+        {
+            var msg = msgFromMailChimp.toUpperCase();
+
+            if(msg.indexOf("ENTER A VALUE") > -1)
+                msg = "Looks like you forgot to provide your email address.";
+            else if(msg.indexOf("IS ALREADY SUBSCRIBED") > -1)
+                msg = "I think we already met; that email address looks awfully familiar.";
+            else if(msg.indexOf("TOO MANY SUBSCRIBE ATTEMPTS") > -1)
+                msg = "Too many attempts for this email. Please try again in about 5 mins.";
+            else if(msg.indexOf("EMAIL ADDRESS IS INVALID") > -1 || msg.indexOf("MUST CONTAIN A SINGLE @") > -1)
+                msg = "That email address is invalid.";
+            else
+                msg = "OOPS! Looks like something went wrong, go ahead and try again... ";
+
+            return msg;
+        }
+     </script>
+     <!--share buttons, copied from Nabin's dynamic.js-->
+     <script>
+     $('.popup').click(function(event){
+            var width  = 600,
+            height = 450,
+            left   = ($(window).width()  - width)  / 2,
+            top    = ($(window).height() - height) / 2,
+            url    = this.href,
+            opts   = 'status=1' +
+                     ',width='  + width  +
+                     ',height=' + height +
+                     ',top='    + top    +
+                     ',left='   + left;
+    
+            window.open(url, '', opts);
+ 
+            return false;
+        });
+	</script>
+<!--end share buttons-->
+    </section>
+    
     <section class="main-content">
       <h3>
 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
@@ -50,4 +190,8 @@
 
   
   </body>
+  <!-- start mailchimp popup-->
+<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us13.list-manage.com","uuid":"b8bb9cd98b56ecec7d216b6cf","lid":"ea1aee874a"}) })</script>
+  <!--end mailchimp popup-->
+  
 </html>
